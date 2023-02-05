@@ -268,7 +268,9 @@ function SideBar(props) {
         <li className="nav-item">
           <a className="nav-link collapsed" href="users-profile.html">
             <i className="bi bi-person"></i>
-            <span>Profile</span>
+            <Link to="/profile">
+              <span>Profile</span>
+            </Link>
           </a>
         </li>
 
