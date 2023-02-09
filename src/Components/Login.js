@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GoogleAuth from "./Authentication/GoogleAuth";
 
 function Login(props) {
   return (
@@ -85,6 +86,7 @@ function Login(props) {
                       Login
                     </button>
                   </div>
+                  <GoogleAuth />
                   <div className="col-12">
                     <p className="small mb-0">
                       Don't have account?{" "}

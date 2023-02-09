@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GoogleAuth from "./Authentication/GoogleAuth";
 
 function Signup(props) {
   return (
@@ -124,6 +125,7 @@ function Signup(props) {
                           Create Account
                         </button>
                       </div>
+                      <GoogleAuth />
                       <div className="col-12">
                         <p className="small mb-0">
                           Already have an account?{" "}
