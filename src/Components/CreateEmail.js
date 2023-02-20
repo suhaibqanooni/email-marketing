@@ -17,7 +17,7 @@ export default function CreateEmail() {
   const onLoad = () => {
     // editor instance is created
     // you can load your template here;
-    // const templateJson = {};
+    const templateJson = {};
     // emailEditorRef.current.editor.addEventListener(
     //   "design:loaded",
     //   onDesignLoad

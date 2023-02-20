@@ -10,7 +10,7 @@ function PlaidTesting(props) {
     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjp0cnVlLCJlIjoianVuYWlkQGdtYWlsLmNvbSIsImQiOiI2M2M4MzdlMzQzNDdmNjA3MDRhMDY4YjQiLCJwIjoiL3VwbG9hZHMvZHAvZGVmYXVsdC5wbmciLCJyIjoiX2EiLCJpYXQiOjE2NzQwNjU5NDZ9.BaWhg-9bD7nWopRS8DgmuCjog5VTLLBSzeB8Ml-m7fw";
 
   const createLinkToken = async () => {
-    await axios.post("/stripePayment/create_link_token").then((response) => {
+    await axios.post("/transactions/create_link_token").then((response) => {
       console.log("Response: ", response.data);
       setLinkToken(response.data.link_token);
     });
