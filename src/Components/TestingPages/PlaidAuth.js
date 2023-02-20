@@ -5,25 +5,30 @@ function PlaidAuth({ publicToken }) {
   const [accessToken, setAccessToken] = useState();
   const [authUser, setAuthUser] = useState();
   axios.defaults.baseURL = "http://localhost:5873";
+  axios.defaults.headers.common["Content-Type"] = "application/json"
   axios.defaults.headers.common["Authorization"] =
-    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjp0cnVlLCJlIjoianVuYWlkQGdtYWlsLmNvbSIsImQiOiI2M2M4MzdlMzQzNDdmNjA3MDRhMDY4YjQiLCJwIjoiL3VwbG9hZHMvZHAvZGVmYXVsdC5wbmciLCJyIjoiX2EiLCJpYXQiOjE2NzQwNjU5NDZ9.BaWhg-9bD7nWopRS8DgmuCjog5VTLLBSzeB8Ml-m7fw";
+    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjp0cnVlLCJlIjoiamFtc2hhaWRzYWJpcjQxMTk4MEBnbWFpbC5jb20iLCJkIjoiNjNjOWI3NDU0NjRlYWE3MmUwMzNlN2ZhIiwicCI6Ii91cGxvYWRzL2RwL2RlZmF1bHQucG5nIiwiciI6Il9hIiwiaWF0IjoxNjc2OTEyNjkzfQ.AtugHWXbB_ZPtZQsSou-Pr0vlTXfpscrhX_TBjgDlgw";
 
   const fetchAccessToken = async () => {
+    console.log("fetchAccessToken called")
     await axios
       .post("/transactions/exchange_public_token", {
         public_token: publicToken,
       })
       .then((accessToken) => {
+        console.log("fetchAccessToken then called")
         console.log("Access Token: ", accessToken.data);
         setAccessToken(accessToken.data.accessToken);
       });
   };
   const getAuth = async () => {
+    console.log("getAuth called")
     await axios
       .post("/transactions/auth", {
         access_token: accessToken,
       })
       .then((userAuth) => {
+        console.log("getAuth then called")
         console.log(userAuth);
         console.log("Auth User: ", userAuth.data.data);
         setAuthUser(userAuth.data.data);

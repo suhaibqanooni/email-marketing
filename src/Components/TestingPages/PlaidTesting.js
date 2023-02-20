@@ -5,12 +5,16 @@ import PlaidAuth from "./PlaidAuth";
 function PlaidTesting(props) {
   const [publicToken, setPublicToken] = useState();
   const [linkToken, setLinkToken] = useState();
+
+  let data = {}
   axios.defaults.baseURL = "http://localhost:5873";
+  axios.defaults.headers.common["Content-Type"] = "application/json"
   axios.defaults.headers.common["Authorization"] =
-    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjp0cnVlLCJlIjoianVuYWlkQGdtYWlsLmNvbSIsImQiOiI2M2M4MzdlMzQzNDdmNjA3MDRhMDY4YjQiLCJwIjoiL3VwbG9hZHMvZHAvZGVmYXVsdC5wbmciLCJyIjoiX2EiLCJpYXQiOjE2NzQwNjU5NDZ9.BaWhg-9bD7nWopRS8DgmuCjog5VTLLBSzeB8Ml-m7fw";
+    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhIjp0cnVlLCJlIjoiamFtc2hhaWRzYWJpcjQxMTk4MEBnbWFpbC5jb20iLCJkIjoiNjNjOWI3NDU0NjRlYWE3MmUwMzNlN2ZhIiwicCI6Ii91cGxvYWRzL2RwL2RlZmF1bHQucG5nIiwiciI6Il9hIiwiaWF0IjoxNjc2OTEyNjkzfQ.AtugHWXbB_ZPtZQsSou-Pr0vlTXfpscrhX_TBjgDlgw";
 
   const createLinkToken = async () => {
-    await axios.post("/transactions/create_link_token").then((response) => {
+    console.log("createLinkToken called")
+    await axios.post("/transactions/create_link_token", data).then((response) => {
       console.log("Response: ", response.data);
       setLinkToken(response.data.link_token);
     });
@@ -19,6 +23,7 @@ function PlaidTesting(props) {
   const { open, ready } = usePlaidLink({
     token: linkToken,
     onSuccess: (public_token, metadata) => {
+      console.log("useplaidLink success called")
       setPublicToken(public_token);
       console.log("Public Token: ", public_token, metadata);
     },
